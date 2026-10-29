@@ -442,6 +442,8 @@ void glvndSetupPthreads(void)
     // just fail with ENOSYS. Instead, look for libthr.so.3, but only if it's
     // loaded.
     dlhandle = dlopen("libthr.so.3", RTLD_LAZY | RTLD_LOCAL | RTLD_NOLOAD);
+#elif defined(__scarlet__)
+    dlhandle = dlopen(NULL, RTLD_NOW | RTLD_GLOBAL);
 #else
     dlhandle = dlopen(NULL, RTLD_LAZY);
 #endif
